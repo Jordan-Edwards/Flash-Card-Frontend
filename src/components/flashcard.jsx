@@ -1,34 +1,16 @@
-import React, { Component } from "react";
+import React, { useState,useEffect } from "react";
 import "./flashcard.css";
+import axios from 'axios'
 
-class Flashcard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      flashcards: [],
-      collections: [],
-    };
-    this.handleChange= this.handleChange.bind(this);
-    this.handleSubmit= this.handleSubmit.bind(this);
-}
+const Flashcard = (props) => {
+  const [collectionsById, setCollectionsById] =useState({Collections:[]});
 
-    handleChange = (event) =>{
-        this.setState ({
-            [event.target.name]: event.target.value
-        });        
-    }
+useEffect(() => {
+  axios.get(`http://127.0.0.1:8000/collections/1/flashcard/`)
+  .then(response => setCollectionsById(response.data[props.index])
+  )}, [collectionsById, props.index]);
 
-    handleSubmit = (event) => {
-        event.preventDefault();
-        const collection_id = {
-            collection: this.state.id,           
-        }                
-        this.props.getFlashcardById(collection_id);
-    }
-
-
-  render() {
-    return (
+  return (
       <React.Fragment>
         
         <div className="row">
@@ -37,7 +19,7 @@ class Flashcard extends Component {
          </div>
           <div className="col-md-4">
           <div className="center">
-          <div className="form-inline">
+          {/* <div className="form-inline">
           <form>
           <select
             className="custom-select custom-select-sm"
@@ -55,11 +37,11 @@ class Flashcard extends Component {
           <button onSubmit={this.handleSubmit}>Change Collection</button>
           </form>
           <br></br>
-        </div>
+        </div> */}
            
               <div className="card">
                 <h4>
-                  <b>Question</b>
+                  <b></b>
                 </h4>
               </div>
               <p className="center">Card __ of ___</p>
@@ -70,6 +52,6 @@ class Flashcard extends Component {
       </React.Fragment>
     );
   }
-}
+
 
 export default Flashcard;
