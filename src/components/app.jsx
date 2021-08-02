@@ -1,65 +1,71 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import axios from "axios";
 import Flashcard from "./flashcard";
 import "./app.css";
 import AddFlashcard from "./addFlashcard";
+import Header from "./Header/header";
+import CollectionsList from "./collectionList/collectionList";
 
-class App extends Component {
-  state = {
-    flashcards: [],
-    collections: [],
-    collection_id: "1",
-  };
+function App() {
+    const [cards, setCards] = useState([
+      {collection_name: '', collection_id: ''}
+    ])    
+    useEffect(() => {
+      axios.get('http://127.0.0.1:8000/collections/')
+      .then(response => setCards(response.data)
+      )}, [])
+    
+      console.log(cards);
+    
+    const [cardsById, setCardsById] = useState([
+      {collection: '',
+      question: '',
+      answer: '',
+      id: ''}
+    ])    
+    
+    useEffect(() => {
+      axios.get('http://127.0.0.1:8000/collections/1/flashcard/')
+      .then(response => setCardsById(response.data)
+      )}, [])
+    
+      // console.log(cardsbyId);
 
-  async getAllCollections(e) {
-    await axios.get("http://127.0.0.1:8000/collections/")
-    .then((response) =>
-      this.setState({
-        collections: response.data,
-      })
-    );
-    console.log(this.state.collections);
-  }
+  // async getFlashcardsById(collection_id) {
+  //   await axios
+  //     .get(`http://127.0.0.1:8000/collections/${collection_id}/flashcard/`)
+  //     .then((response) =>
+  //       this.setState({
+  //         flashcards: response.data,
+  //       })
+  //     );
+  //   console.log(this.state.flashcards);
+  // }
 
-  async getFlashcardsById(collection_id) {
-    await axios
-      .get(`http://127.0.0.1:8000/collections/${collection_id}/flashcard/`)
-      .then((response) =>
-        this.setState({
-          flashcards: response.data,
-        })
-      );
-    console.log(this.state.flashcards);
-  }
+  // addFlashcard = (flashcard, collection_id) => {
+  //   axios.post(
+  //     `http://127.0.0.1:8000/collections/${collection_id}/flashcard/`,
+  //     flashcard
+  //   );
+  //   this.setState({
+  //     flashcards: [...this.state.flashcards, flashcard],
+  //   });
+  // };
 
-  addFlashcard = (flashcard, collection_id) => {
-    axios.post(
-      `http://127.0.0.1:8000/collections/${collection_id}/flashcard/`,
-      flashcard
-    );
-    this.setState({
-      flashcards: [...this.state.flashcards, flashcard],
-    });
-  };
 
-  componentDidMount() {
-    this.getFlashcardsById();
-    this.getAllCollections();
-  }
 
-  render() {
+ 
     return (
       <React.Fragment>
         <div className="container-fluid">
-          <AddFlashcard
-            addFlashcard={this.addFlashcard}
-            collection_id={this.state.flashcardCollection}
-          />
-          <Flashcard question={this.state.flashcards.question} />
+          <Header />
+          <AddFlashcard />
+          <CollectionsList collections={cards} />
+          <Flashcard cardsById={cardsById}/>
         </div>
       </React.Fragment>
     );
-  }
+  
 }
 export default App;

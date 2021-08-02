@@ -4,7 +4,8 @@
     flex-flow: row wrap;
     align-items: center;
     text-align: center;
-    align-self: center;  
+    align-self: center;
+    justify-content: center;  
   }
   
   /* Add some margins for each label */
@@ -45,8 +46,7 @@
   }
   
   .center {
-      margin: auto;
-      width: 60%;    
+      margin: auto;         
       padding: 10px;
     }
   

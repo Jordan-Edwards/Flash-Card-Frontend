@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './addFlashcard.css'
+import axios from 'axios';
 
 class AddFlashcard extends Component {
     constructor(props) {
@@ -12,6 +13,16 @@ class AddFlashcard extends Component {
           this.handleChange= this.handleChange.bind(this);
           this.handleSubmit= this.handleSubmit.bind(this);
     }
+
+     addFlashcard = (flashcard, collection_id) => {
+    axios.post(
+      `http://127.0.0.1:8000/collections/${collection_id}/flashcard/`,
+      flashcard
+    );
+    this.setState({
+      flashcards: [...this.state.flashcards, flashcard],
+    });
+  };
 
     handleChange = (event) =>{
         this.setState ({
@@ -29,7 +40,7 @@ class AddFlashcard extends Component {
         }
         const collection_id =flashcard.collection;
         console.log(flashcard)
-        this.props.addFlashcard(flashcard, collection_id);
+        this.addFlashcard(flashcard, collection_id);
     }
 
 
