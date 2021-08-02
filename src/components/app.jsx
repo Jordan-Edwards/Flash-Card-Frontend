@@ -11,6 +11,7 @@ function App() {
     const [cards, setCards] = useState([
       {collection_name: '', collection_id: ''}
     ])    
+
     useEffect(() => {
       axios.get('http://127.0.0.1:8000/collections/')
       .then(response => setCards(response.data)
@@ -26,9 +27,15 @@ function App() {
     ])    
     
     useEffect(() => {
-      axios.get('http://127.0.0.1:8000/collections/1/flashcard/')
-      .then(response => setCardsById(response.data)
-      )}, [])
+     getCards()}, [])
+   
+    const getCards = async () => {
+      await axios.get('http://127.0.0.1:8000/collections/1/flashcard/')
+      .then(response => setCardsById(response.data))
+    }
+    
+    
+                
     
       // console.log(cardsbyId);
 
@@ -60,9 +67,9 @@ function App() {
       <React.Fragment>
         <div className="container-fluid">
           <Header />
-          <AddFlashcard />
+          <AddFlashcard getCards={getCards} />
           <CollectionsList collections={cards} />
-          <Flashcard cardsById={cardsById}/>
+          <Flashcard cardsById={cardsById} />
         </div>
       </React.Fragment>
     );

@@ -14,14 +14,15 @@ class AddFlashcard extends Component {
           this.handleSubmit= this.handleSubmit.bind(this);
     }
 
-     addFlashcard = (flashcard, collection_id) => {
-    axios.post(
+     addFlashcard = async (flashcard, collection_id) => {
+   await  axios.post(
       `http://127.0.0.1:8000/collections/${collection_id}/flashcard/`,
       flashcard
-    );
-    this.setState({
-      flashcards: [...this.state.flashcards, flashcard],
-    });
+    ).then(res => {
+        console.log(res)
+        this.props.getCards()
+    }).catch(err => console.log(err))
+  
   };
 
     handleChange = (event) =>{
