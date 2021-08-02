@@ -3,9 +3,11 @@ import React from 'react';
 import "./flashcard.css";
 
 
-const Flashcard = ({cardsById}) => {  
+const Flashcard = ({cardsById, getCards}) => {  
    
-    
+    const handleChange =(e)=>{
+      getCards(e.target.value)
+    }
 
   
   
@@ -28,6 +30,7 @@ const Flashcard = ({cardsById}) => {
             // value={collectionId}
             type="text"
             name="collectionId"
+            onChange = {handleChange}
             // onChange={setFlashcardsByCollectionByIdOne}
                       >
                       <br></br>
