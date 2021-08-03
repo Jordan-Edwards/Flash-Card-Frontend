@@ -9,6 +9,7 @@
     padding-left: auto;
     padding-right:auto;
     justify-content: center;
+    display: flex;
   }
   
   /* On mouse-over, add a deeper shadow */
@@ -59,3 +60,34 @@ form {
     top: auto;
 }
 
+option {
+  text-align: center;
+  width: auto;
+}
+
+p {
+  text-align: center;
+  width: auto;
+  position:absolute;
+  bottom:0;
+  left:5%;
+  
+  }
+
+H6 {
+  text-align: center;
+  width: auto;
+  }
+
+button {
+  width:auto;
+  text-align: center;
+}
+
+.prev {
+  float: left;
+}
+
+.next {
+  float: right;
+}

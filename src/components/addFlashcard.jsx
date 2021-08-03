@@ -20,9 +20,9 @@ class AddFlashcard extends Component {
       flashcard
     ).then(res => {
         console.log(res)
-        this.props.getCards()
+        this.props.getCards(collection_id)
     }).catch(err => console.log(err))
-  
+    
   };
 
     handleChange = (event) =>{

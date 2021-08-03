@@ -51,7 +51,9 @@ function App() {
         <div className="container-fluid">
           <Header />
           <AddFlashcard getCards={getCards} />
+          <hr />
           <EditCard getCards={getCards} />
+          <hr />
           {/* <CollectionsList collections={cards} /> */}
           <Flashcard getCards={getCards} cards={cards} 
           cardsById={cardsById}      

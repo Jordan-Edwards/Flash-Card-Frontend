@@ -21,7 +21,7 @@ class EditCard extends Component {
       flashcard
     ).then(res => {
         console.log(res)
-        this.props.getCards()
+        this.props.getCards(collection_id, id)
     }).catch(err => console.log(err))  
   };
 

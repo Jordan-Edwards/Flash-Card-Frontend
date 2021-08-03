@@ -10,18 +10,8 @@ const Flashcard = ({ cardsById, getCards, props }) => {
 
 let [counter, adjustCounter] = useState(0)
 
-let flashcard 
-
-
 const[flip, setFlip] = useState(false)
 
-const updateFlashcard = async (flashcard, collection, id) =>{
-  await axios.put (`http://127.0.0.1:8000/${collection}/flashcard/${id}`, flashcard)
-  .then(res => {
-    console.log(res)
-    this.props.cardsById()
-  }).catch(err => console.log(err))
-};
 
 
 // goToNextFlashcard = () => {
@@ -65,23 +55,25 @@ const updateFlashcard = async (flashcard, collection, id) =>{
                 >
                   <br></br>
                   <option value>Collection to Review</option>
-                  <option value="1">collection 1</option>
-                  <option value="2">collection 2</option>
-                  <option value="3">collection 3</option>
+                  <option value="1">Collection 1</option>
+                  <option value="2">Collection 2</option>
+                  <option value="3">Collection 3</option>
                 </select>
                 {/* <button onSubmit={setFlashcardsByCollectionById}>Change Collection</button> */}
               </form>
             </div>
 
-            <button onClick={() => adjustCounter(counter--)}>previous</button>
+            
           
             <div onClick={() => setFlip(!flip)} className="card">
-              <h4>
+              <h2>
                 <b> {flip ? cardsById[counter].answer : cardsById[counter].question}</b>
-              </h4>
+              </h2>
+              <p>*click card to flip*</p>
             </div>
-            <p>Card {counter+1} of {cardsById.length}</p>
-            <button onClick={() => adjustCounter(counter++)}>next</button>
+            <h6> Card {counter+1} of {cardsById.length}</h6>
+            <button className="prev" onClick={() => adjustCounter(counter--)}>Previous</button>
+            <button className="next" onClick={() => adjustCounter(counter++)}>Next</button>
           </div>
         </div>
         <div className="col-md-4" />
