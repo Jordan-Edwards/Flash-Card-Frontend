@@ -5,7 +5,7 @@ import Flashcard from "./flashcard";
 import "./app.css";
 import AddFlashcard from "./addFlashcard";
 import Header from "./Header/header";
-import CollectionsList from "./collectionList/collectionList";
+// import CollectionsList from "./collectionList/collectionList";
 
 function App() {
     const [cards, setCards] = useState([
@@ -23,52 +23,39 @@ function App() {
       {collection: '',
       question: '',
       answer: '',
-      id: ''}
+      id: '',
+      flashcardNumber:0}
     ])    
     
     useEffect(() => {
      getCards()}, [])
+    
+     useEffect(() => {
+     deleteFlashcard()}, [])
    
     const getCards = async (id) => {
       await axios.get(`http://127.0.0.1:8000/collections/${id}/flashcard/`)
-      .then(response => setCardsById(response.data))
-
-    
+      .then(response => setCardsById(response.data))    
     }
+       
+    const deleteFlashcard = async (collection, id) => {
+      await axios.delete(`http://127.0.0.1:8000/collection/${collection}/flashcard/${id}`)
+      .then (response => console.log(response))
+    }            
     
-    
-                
-    
-      // console.log(cardsbyId);
-
-  // async getFlashcardsById(collection_id) {
-  //   await axios
-  //     .get(`http://127.0.0.1:8000/collections/${collection_id}/flashcard/`)
-  //     .then((response) =>
-  //       this.setState({
-  //         flashcards: response.data,
-  //       })
-  //     );
-  //   console.log(this.state.flashcards);
-  // }
-
-  // addFlashcard = (flashcard, collection_id) => {
-  //   axios.post(
-  //     `http://127.0.0.1:8000/collections/${collection_id}/flashcard/`,
-  //     flashcard
-  //   );
-  //   this.setState({
-  //     flashcards: [...this.state.flashcards, flashcard],
-  //   });
-  // };
+   
 
     return (
       <React.Fragment>
         <div className="container-fluid">
           <Header />
           <AddFlashcard getCards={getCards} />
-          <CollectionsList collections={cards} />
-          <Flashcard getCards={getCards}  cardsById={cardsById} />
+          {/* <CollectionsList collections={cards} /> */}
+          <Flashcard getCards={getCards} cards={cards} 
+          cardsById={cardsById}
+          // prevFlashcard={this.goToPreviousFlashcard}
+          // nextFlashcard={this.goToNextFlashcard}
+          deleteFlashcard={deleteFlashcard} />
         </div>
       </React.Fragment>
     );
