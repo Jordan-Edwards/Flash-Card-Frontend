@@ -40,8 +40,9 @@ function App() {
     }
        
     const deleteFlashcard = async (collection, id) => {
-      await axios.delete(`http://127.0.0.1:8000/collection/${collection}/flashcard/${id}`)
-      .then (response => console.log(response))
+      await axios.delete(`http://127.0.0.1:8000/collections/${collection}/flashcard/${id}`)
+      .then (response => console.log(response));
+      getCards(collection);
     }            
     
     
@@ -56,7 +57,10 @@ function App() {
           <hr />
           {/* <CollectionsList collections={cards} /> */}
           <Flashcard getCards={getCards} cards={cards} 
-          cardsById={cardsById}      
+          cardsById={cardsById}
+          deleteFlashcard={deleteFlashcard}
+          collection={cardsById.collection}
+          id={cardsById.id}      
            />
         </div>
         

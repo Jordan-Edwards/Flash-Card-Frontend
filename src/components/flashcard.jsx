@@ -3,7 +3,7 @@ import axios from "axios";
 
 import "./flashcard.css";
 
-const Flashcard = ({ cardsById, getCards, props }) => {
+const Flashcard = ({ cardsById, getCards, props, deleteFlashcard }) => {
   const handleChange = (e) => {
     getCards(e.target.value);
   };
@@ -79,23 +79,26 @@ const[flip, setFlip] = useState(false)
         <div className="col-md-4" />
       </div>
       <div className="text-center">
+      <title>Collection Details{cardsById.collection}</title>
         <table className="table table-striped">
+        
           <thead>
             <tr>
-              <th scope="col">ID</th>
+              <th scope="col">Card ID</th>
+              <th scope="col">Collection ID</th>
               <th scope="col">Question</th>
               <th scope="col">Answer</th>
             </tr>
           </thead>
 
           <tbody>
-            {cardsById.map(({ id, question, answer }) => (
+            {cardsById.map(({ id, question, answer, collection }) => (
               <tr key={id}>
                 <td>{id}</td>
+                <td>{collection}</td>
                 <td>{question}</td>
-                <td>{answer}</td>
-                {/* <button type="button" onClick={() => props.updateFlashcard(flashcard,cardsById.collection,cardsById.id)}>Edit Card</button> */}
-                {/* <button type="button" class="btn btn-outline-secondary" onClick={() => props.deleteCard(cardsById.collection. cardsById.id)}>Delete</button> */}
+                <td>{answer}</td>        
+                <button type="button" class="btn btn-outline-secondary" onClick={() => deleteFlashcard(collection, id)}>Delete</button>
               </tr>
             ))}
           </tbody>
