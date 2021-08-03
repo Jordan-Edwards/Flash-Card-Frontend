@@ -14,6 +14,8 @@ const goToNextFlashcard = () => {
   let adjustCounter = cardsById;
 }
 
+const[flip, setFlip] = useState(false)
+
 // goToNextFlashcard = () => {
   //   let tempNumber = this.state.cardsById;
   //   tempNumber++;
@@ -65,9 +67,9 @@ const goToNextFlashcard = () => {
 
             <button onClick={() => adjustCounter(counter--)}>previous</button>
           
-            <div className="card">
+            <div onClick={() => setFlip(!flip)} className="card">
               <h4>
-                <b>{cardsById[counter].question}</b>
+                <b> {flip ? cardsById[counter].answer : cardsById[counter].question}</b>
               </h4>
             </div>
             <p>Card {counter+1} of {cardsById.length}</p>
