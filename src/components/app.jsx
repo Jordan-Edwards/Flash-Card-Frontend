@@ -6,6 +6,7 @@ import "./app.css";
 import AddFlashcard from "./addFlashcard";
 import Header from "./Header/header";
 // import CollectionsList from "./collectionList/collectionList";
+import EditCard from "./editCard/editCard";
 
 function App() {
     const [cards, setCards] = useState([
@@ -26,12 +27,12 @@ function App() {
       id: '',
       flashcardNumber:0}
     ])    
-    
+     
     useEffect(() => {
      getCards()}, [])
     
-     useEffect(() => {
-     deleteFlashcard()}, [])
+    //  useEffect(() => {
+    //  deleteFlashcard()}, [])
    
     const getCards = async (id) => {
       await axios.get(`http://127.0.0.1:8000/collections/${id}/flashcard/`)
@@ -43,20 +44,20 @@ function App() {
       .then (response => console.log(response))
     }            
     
-   
+    
 
     return (
       <React.Fragment>
         <div className="container-fluid">
           <Header />
           <AddFlashcard getCards={getCards} />
+          <EditCard getCards={getCards} />
           {/* <CollectionsList collections={cards} /> */}
           <Flashcard getCards={getCards} cards={cards} 
-          cardsById={cardsById}
-          // prevFlashcard={this.goToPreviousFlashcard}
-          // nextFlashcard={this.goToNextFlashcard}
-          deleteFlashcard={deleteFlashcard} />
+          cardsById={cardsById}      
+           />
         </div>
+        
       </React.Fragment>
     );
   

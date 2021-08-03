@@ -1,20 +1,28 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 import "./flashcard.css";
 
-const Flashcard = ({ cards, cardsById, getCards, props }) => {
+const Flashcard = ({ cardsById, getCards, props }) => {
   const handleChange = (e) => {
     getCards(e.target.value);
   };
 
 let [counter, adjustCounter] = useState(0)
 
+let flashcard 
 
-const goToNextFlashcard = () => {
-  let adjustCounter = cardsById;
-}
 
 const[flip, setFlip] = useState(false)
+
+const updateFlashcard = async (flashcard, collection, id) =>{
+  await axios.put (`http://127.0.0.1:8000/${collection}/flashcard/${id}`, flashcard)
+  .then(res => {
+    console.log(res)
+    this.props.cardsById()
+  }).catch(err => console.log(err))
+};
+
 
 // goToNextFlashcard = () => {
   //   let tempNumber = this.state.cardsById;
@@ -82,6 +90,7 @@ const[flip, setFlip] = useState(false)
         <table className="table table-striped">
           <thead>
             <tr>
+              <th scope="col">ID</th>
               <th scope="col">Question</th>
               <th scope="col">Answer</th>
             </tr>
@@ -90,9 +99,10 @@ const[flip, setFlip] = useState(false)
           <tbody>
             {cardsById.map(({ id, question, answer }) => (
               <tr key={id}>
+                <td>{id}</td>
                 <td>{question}</td>
                 <td>{answer}</td>
-
+                {/* <button type="button" onClick={() => props.updateFlashcard(flashcard,cardsById.collection,cardsById.id)}>Edit Card</button> */}
                 {/* <button type="button" class="btn btn-outline-secondary" onClick={() => props.deleteCard(cardsById.collection. cardsById.id)}>Delete</button> */}
               </tr>
             ))}
