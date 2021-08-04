@@ -2,13 +2,28 @@ import React from 'react';
 import './collectionList.css';
 
 const CollectionsList = ({cardsById, deleteFlashcard}) => {
+
+    const closeTable = () => {
+        var x = document.getElementById("myDIV");
+        if (x.style.display === "none") {
+          x.style.display = "block";
+        } else {
+          x.style.display = "none";
+        }
+      }
+
     return (     
         <div className="row">
         <div className="col-md-3" />
         <div className="col-md-6">
     
           <h3>Collection Details</h3>
-
+          <button
+                    type="button"                    
+                    onClick={() => closeTable()}
+                  >
+                    Open/Close Details</button>
+        <div id="myDIV">
           <table className="table table-striped">
             <thead className="thead-dark">
               <tr>
@@ -40,7 +55,7 @@ const CollectionsList = ({cardsById, deleteFlashcard}) => {
               ))}
             </tbody>
           </table>
-         
+         </div>
           <div className="col-md-3" />
         </div>
       </div>);
