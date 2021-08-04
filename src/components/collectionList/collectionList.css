@@ -1,0 +1,9 @@
+td {
+    font-weight: bolder;
+}
+tbody {
+    border: black;
+    border-style: solid;
+    background-color:white;
+}
+    
