@@ -61,3 +61,6 @@
       align-items: stretch;
     }
   }
+  .id-card {
+    width: 60px;
+  }

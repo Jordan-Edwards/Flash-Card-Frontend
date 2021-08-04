@@ -65,7 +65,7 @@ class EditCard extends Component {
                 </select>
             </div>
 
-        <input
+        <input className="id-card"
           type="text"
           name="id"
           placeholder="Card ID"

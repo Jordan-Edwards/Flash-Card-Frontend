@@ -87,10 +87,12 @@ button {
 
 .prev {
   float: left;
+  border-radius: 4px;
 }
 
 .next {
   float: right;
+  border-radius: 4px;
 }
 
 button {
