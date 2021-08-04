@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
-
 import "./flashcard.css";
 
 const Flashcard = ({ cardsById, getCards, deleteFlashcard }) => {
@@ -10,7 +8,7 @@ const Flashcard = ({ cardsById, getCards, deleteFlashcard }) => {
 
   let [counter, adjustCounter] = useState(0);
 
-  const [flip, setFlip] = useState(false);
+  // const [flip, setFlip] = useState(false);
 
   const goToNextFlashcard = () => {
     let tempNumber = counter;
@@ -37,7 +35,7 @@ const Flashcard = ({ cardsById, getCards, deleteFlashcard }) => {
           <div className="center">
             <div className="form-inline">
               <form>
-                <h2>Pick a Collection</h2>
+                <h2>View Cards</h2>
                 <select
                   className="custom-select custom-select-lg"
                   type="text"
@@ -77,13 +75,14 @@ const Flashcard = ({ cardsById, getCards, deleteFlashcard }) => {
               Card {counter + 1} of {cardsById.length}
             </h6>
             <button className="prev" onClick={() => goToPreviousFlashcard()}>
-              Previous
+              <i class="arrow left"></i>
             </button>
             <button className="next" onClick={() => goToNextFlashcard()}>
-              Next
+              <i class="arrow right"></i>
             </button>
           </div>
         </div>
+        
 
         <div className="col-md-5" />
       </div>
@@ -110,13 +109,15 @@ const Flashcard = ({ cardsById, getCards, deleteFlashcard }) => {
                   <td>{id}</td>
                   <td>{question}</td>
                   <td>{answer}</td>
+                  <td>
                   <button
                     type="button"
-                    className="btn btn-outline-secondary"
+                    className="btn btn-outline-primary"
                     onClick={() => deleteFlashcard(collection, id)}
                   >
                     Delete
                   </button>
+                  </td>
                 </tr>
               ))}
             </tbody>
