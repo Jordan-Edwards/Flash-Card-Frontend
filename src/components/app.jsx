@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import axios from "axios";
-import Flashcard from "./flashcard";
+import Flashcard from "./flashcard/flashcard";
 import "./app.css";
-import AddFlashcard from "./addFlashcard";
+import AddFlashcard from "./addFlashcard/addFlashcard.jsx";
 import Header from "./Header/header";
 import EditCard from "./editCard/editCard";
 import CollectionsList from "./collectionList/collectionList";
