@@ -18,13 +18,10 @@ const CollectionsList = ({cardsById, deleteFlashcard}) => {
         <div className="col-md-6">
     
           <h3>Collection Details</h3>
-          <button
-                    type="button"                    
-                    onClick={() => closeTable()}
-                  >
+          <button type="button" onClick={() => closeTable()}>
                     Open/Close Details</button>
         <div id="myDIV">
-          <table className="table table-striped">
+          <table className="table-rounded">
             <thead className="thead-dark">
               <tr>
                 <th scope="col">Collection ID</th>
@@ -62,12 +59,3 @@ const CollectionsList = ({cardsById, deleteFlashcard}) => {
 }
  
 export default CollectionsList;
-
-
-
-
-
-
-
-
-
