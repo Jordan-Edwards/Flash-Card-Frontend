@@ -36,13 +36,13 @@
   /* Style the submit button */
   .form-inline button {
     padding: 10px 20px;
-    background-color: gray;
+    background-color: #725e54;
     border: 1px solid #ddd;
     color: ghostwhite;
   }
   
   .form-inline button:hover {
-    background-color: royalblue;
+    background-color: #463a34;
   }
   
   .center {

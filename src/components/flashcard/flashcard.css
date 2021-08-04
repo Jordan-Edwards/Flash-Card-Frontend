@@ -95,15 +95,14 @@ button {
 
 button {
   padding: 10px 20px;
-  background-color: gray;
+  background-color: #725e54;
   border: 1px solid #ddd;
   color: ghostwhite;
 }
 
 button:hover {
-  background-color: royalblue;
+  background-color: #463a34;
 }
-
 div {
   width: auto;
   text-align:center

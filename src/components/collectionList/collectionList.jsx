@@ -45,7 +45,7 @@ const CollectionsList = ({cardsById, deleteFlashcard}) => {
                   <td>
                   <button
                     type="button"
-                    className="btn btn-outline-primary"
+                    className="btn btn-outline-danger"
                     onClick={() => deleteFlashcard(collection, id)}
                   >
                     Delete
