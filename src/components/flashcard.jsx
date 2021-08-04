@@ -3,7 +3,9 @@ import "./flashcard.css";
 
 const Flashcard = ({ cardsById, getCards, deleteFlashcard }) => {
   const handleChange = (e) => {
-    getCards(e.target.value);
+    getCards(e.target.value); {
+      adjustCounter(0)
+    }
   };
 
   let [counter, adjustCounter] = useState(0);
@@ -40,8 +42,7 @@ const Flashcard = ({ cardsById, getCards, deleteFlashcard }) => {
                   className="custom-select custom-select-lg"
                   type="text"
                   name="collectionId"
-                  onChange={handleChange}
-                >
+                  onChange={handleChange}>
                   <option value>Collection to Review</option>
                   <option value="1">Collection 1</option>
                   <option value="2">Collection 2</option>

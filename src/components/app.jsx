@@ -44,7 +44,6 @@ function App() {
       getCards(collection);
     }            
     
-    
 
     return (
       <React.Fragment>
