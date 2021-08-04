@@ -80,10 +80,10 @@ h5 {
   padding-top: 5%;
   }
 
-button {
+/* button {
   width:auto;
   text-align: center;
-}
+} */
 
 .prev {
   float: left;
@@ -96,15 +96,30 @@ button {
 }
 
 button {
+  display:inline-block;
+  cursor: pointer;
+  text-decoration: none;
+  outline: none;
+  width:auto;
+  text-align: center;
   padding: 10px 20px;
   background-color: #725e54;
   border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 9px #999;
   color: ghostwhite;
 }
 
 button:hover {
   background-color: #463a34;
 }
+
+button:active {
+  background-color: #463a34;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
 div {
   width: auto;
   text-align:center
