@@ -3,106 +3,126 @@ import axios from "axios";
 
 import "./flashcard.css";
 
-const Flashcard = ({ cardsById, getCards, props, deleteFlashcard }) => {
+const Flashcard = ({ cardsById, getCards, deleteFlashcard }) => {
   const handleChange = (e) => {
     getCards(e.target.value);
   };
 
-let [counter, adjustCounter] = useState(0)
+  let [counter, adjustCounter] = useState(0);
 
-const[flip, setFlip] = useState(false)
+  const [flip, setFlip] = useState(false);
 
+  const goToNextFlashcard = () => {
+    let tempNumber = counter;
+    tempNumber++;
+    if (tempNumber === cardsById.length) {
+      tempNumber = 0;
+    }
+    adjustCounter(tempNumber);
+  };
+  const goToPreviousFlashcard = () => {
+    let tempNumber = counter;
+    tempNumber--;
+    if (tempNumber < 0)
+    tempNumber = cardsById.length -1;
+    adjustCounter(tempNumber);
+  };
 
-
-// goToNextFlashcard = () => {
-  //   let tempNumber = this.state.cardsById;
-  //   tempNumber++;
-  //   if (tempNumber === this.state.cardsById.length) {
-  //     tempNumber = 0;
-  //   }
-  //   this.setState({
-  //     flashcardNumber: tempNumber,
-  //   });
-  // };
-
-  // goToPreviousFlashcard = () => {
-  //   let tempNumber = this.state.cardsById;
-  //   tempNumber--;
-  //   if (tempNumber < 0) {
-  //     tempNumber = this.state.cardsById.length - 1;
-  //   }
-  //   this.setState({
-  //     flashcardNumber: tempNumber,
-  //   });
-  // };
 
   return (
     <React.Fragment>
       <div className="row">
-        <div className="col-md-4">       
-        </div>
-        <div className="col-md-4">
+        <div className="col-md-5"></div>
+        <div className="col-md-2">
           <div className="center">
             <div className="form-inline">
               <form>
+                <h2>Pick a Collection</h2>
                 <select
                   className="custom-select custom-select-lg"
-                  // value={collectionId}
                   type="text"
                   name="collectionId"
                   onChange={handleChange}
-                  // onChange={setFlashcardsByCollectionByIdOne}
                 >
-                  <br></br>
                   <option value>Collection to Review</option>
                   <option value="1">Collection 1</option>
                   <option value="2">Collection 2</option>
                   <option value="3">Collection 3</option>
                 </select>
-                {/* <button onSubmit={setFlashcardsByCollectionById}>Change Collection</button> */}
               </form>
             </div>
-
-            
-          
-            <div onClick={() => setFlip(!flip)} className="card">
+            {/* <div onClick={() => setFlip(!flip)} className="card">
               <h2>
-                <b> {flip ? cardsById[counter].answer : cardsById[counter].question}</b>
+                <b>
+                  {" "}
+                  {flip
+                    ? cardsById[counter].answer
+                    : cardsById[counter].question}
+                </b>
               </h2>
               <p>*click card to flip*</p>
+            </div> */}
+            <div className="flip-card">
+              <div className="flip-card-inner">
+                <div className="flip-card-front">
+                  <h2>{cardsById[counter].question}</h2>
+                </div>
+                <div className="flip-card-back">
+                  <h2>{cardsById[counter].answer}</h2>
+                </div>
+              </div>
             </div>
-            <h6> Card {counter+1} of {cardsById.length}</h6>
-            <button className="prev" onClick={() => adjustCounter(counter--)}>Previous</button>
-            <button className="next" onClick={() => adjustCounter(counter++)}>Next</button>
+
+            <h6>
+              Card {counter + 1} of {cardsById.length}
+            </h6>
+            <button className="prev" onClick={() => goToPreviousFlashcard()}>
+              Previous
+            </button>
+            <button className="next" onClick={() => goToNextFlashcard()}>
+              Next
+            </button>
           </div>
         </div>
-        <div className="col-md-4" />
-      </div>
-      <div className="text-center">
-      <title>Collection Details{cardsById.collection}</title>
-        <table className="table table-striped">
-        
-          <thead>
-            <tr>
-              <th scope="col">Card ID</th>
-              <th scope="col">Collection ID</th>
-              <th scope="col">Question</th>
-              <th scope="col">Answer</th>
-            </tr>
-          </thead>
 
-          <tbody>
-            {cardsById.map(({ id, question, answer, collection }) => (
-              <tr key={id}>
-                <td>{id}</td>
-                <td>{collection}</td>
-                <td>{question}</td>
-                <td>{answer}</td>        
-                <button type="button" class="btn btn-outline-secondary" onClick={() => deleteFlashcard(collection, id)}>Delete</button>
+        <div className="col-md-5" />
+      </div>
+      <hr />
+      <div className="row">
+        <div className="col-md-3" />
+        <div className="col-md-6">
+          <h3>Collection Details {cardsById.collection}</h3>
+          <table className="table table-striped">
+            <thead className="thead-dark">
+              <tr>
+                <th scope="col">Collection ID</th>
+                <th scope="col">Card ID</th>
+                <th scope="col">Question</th>
+                <th scope="col">Answer</th>
+                <th scope="col">Delete</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+
+            <tbody>
+              {cardsById.map(({ id, question, answer, collection }) => (
+                <tr key={id}>
+                  <td>{collection}</td>
+                  <td>{id}</td>
+                  <td>{question}</td>
+                  <td>{answer}</td>
+                  <button
+                    type="button"
+                    className="btn btn-outline-secondary"
+                    onClick={() => deleteFlashcard(collection, id)}
+                  >
+                    Delete
+                  </button>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <div className="col-md-3" />
+        </div>
       </div>
     </React.Fragment>
   );

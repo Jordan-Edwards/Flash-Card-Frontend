@@ -68,7 +68,7 @@ class EditCard extends Component {
         <input
           type="text"
           name="id"
-          placeholder="ID"
+          placeholder="Card ID"
           onChange={this.handleChange}
           value={this.state.id}
         />
