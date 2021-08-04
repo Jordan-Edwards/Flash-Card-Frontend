@@ -5,7 +5,6 @@ import Flashcard from "./flashcard";
 import "./app.css";
 import AddFlashcard from "./addFlashcard";
 import Header from "./Header/header";
-// import CollectionsList from "./collectionList/collectionList";
 import EditCard from "./editCard/editCard";
 
 function App() {
@@ -55,7 +54,6 @@ function App() {
           <hr />
           <EditCard getCards={getCards} />
           <hr />
-          {/* <CollectionsList collections={cards} /> */}
           <Flashcard getCards={getCards} cards={cards} 
           cardsById={cardsById}
           deleteFlashcard={deleteFlashcard}
