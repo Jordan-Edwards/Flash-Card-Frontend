@@ -6,6 +6,7 @@ import "./app.css";
 import AddFlashcard from "./addFlashcard";
 import Header from "./Header/header";
 import EditCard from "./editCard/editCard";
+import CollectionsList from "./collectionList/collectionList";
 
 function App() {
     const [cards, setCards] = useState([
@@ -51,14 +52,20 @@ function App() {
           <Header />
           <AddFlashcard getCards={getCards} />
           <hr />
-          <EditCard getCards={getCards} />
-          <hr />
+       
           <Flashcard getCards={getCards} cards={cards} 
           cardsById={cardsById}
           deleteFlashcard={deleteFlashcard}
           collection={cardsById.collection}
           id={cardsById.id}      
            />
+              <EditCard getCards={getCards} />
+          <hr />
+          <CollectionsList getCards={getCards} cards={cards} 
+          cardsById={cardsById}
+          deleteFlashcard={deleteFlashcard}
+          collection={cardsById.collection}
+          id={cardsById.id}  />    
         </div>
         
       </React.Fragment>

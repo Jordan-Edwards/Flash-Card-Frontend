@@ -74,9 +74,10 @@ p {
   
   }
 
-H6, h3 {
+h5, h3 {
   text-align: center;
   width: auto;
+  padding-top: 5%;
   }
 
 button {
@@ -145,7 +146,7 @@ div {
   justify-content: center;
   align-items: center;
   
-  background-color: royalblue;
+  background-color: blanchedalmond;
   color: black;
   line-height: 300px;
   height: 300px;
@@ -156,13 +157,14 @@ div {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color:royalblue;
-  color: ghostwhite;
+  background-color:blanchedalmond;
+  color: black;
   line-height: 300px;
   height: 300px;
   vertical-align: middle;
   transform: rotateY(180deg);
 }
+
 .arrow {
   border: solid black;
   border-width: 0 3px 3px 0;

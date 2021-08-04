@@ -32,8 +32,8 @@ const Flashcard = ({ cardsById, getCards, deleteFlashcard }) => {
   return (
     <React.Fragment>
       <div className="row">
-        <div className="col-md-5"></div>
-        <div className="col-md-2">
+        <div className="col-md-4"></div>
+        <div className="col-md-4">
           <div className="center">
             <div className="form-inline">
               <form>
@@ -64,17 +64,17 @@ const Flashcard = ({ cardsById, getCards, deleteFlashcard }) => {
             <div className="flip-card">
               <div className="flip-card-inner">
                 <div className="flip-card-front">
-                  <h2>{cardsById[counter].question}</h2>
+                  <h2><b>{cardsById[counter].question}</b></h2>
                 </div>
                 <div className="flip-card-back">
-                  <h2>{cardsById[counter].answer}</h2>
+                  <h2><b>{cardsById[counter].answer}</b></h2>
                 </div>
               </div>
             </div>
 
-            <h6>
+            <h5>
               Card {counter + 1} of {cardsById.length}
-            </h6>
+            </h5>
             <button className="prev" onClick={() => goToPreviousFlashcard()}>
               <i class="arrow left"></i>
             </button>
@@ -85,10 +85,10 @@ const Flashcard = ({ cardsById, getCards, deleteFlashcard }) => {
         </div>
         
 
-        <div className="col-md-5" />
+        <div className="col-md-4" />
       </div>
       <hr />
-      <div className="row">
+      {/* <div className="row">
         <div className="col-md-3" />
         <div className="col-md-6">
           <h3>Collection Details {cardsById.collection}</h3>
@@ -125,7 +125,7 @@ const Flashcard = ({ cardsById, getCards, deleteFlashcard }) => {
           </table>
           <div className="col-md-3" />
         </div>
-      </div>
+      </div> */}
     </React.Fragment>
   );
 };
